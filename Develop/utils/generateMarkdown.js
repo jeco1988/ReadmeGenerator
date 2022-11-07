@@ -1,8 +1,8 @@
-// Function to return a message if user doesn't want contributors
-function renderContributingSection(confirmContributers, data) {
+// Function to return a message if user doesn't accept contributors
+function renderContributionSection(confirmContributers, data) {
   if (!confirmContributers) {
     return `
-  Thank you for your interest in helping out; however, I will not be accepting contributions from third parties.
+  Thank you for your interest, we will not be accepting contributions at this time however.
     `;
   } else {
     return `
@@ -11,8 +11,7 @@ function renderContributingSection(confirmContributers, data) {
   }
 }
 
-// Function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+// Function that returns appropriate license badge, if none, return empty string
 function renderLicenseBadge(license) { 
   if (license !== 'no license') {
     return `
@@ -23,8 +22,7 @@ function renderLicenseBadge(license) {
   }
 }
 
-// Function that returns the license link
-// If there is no license, return an empty string
+// Function that returns license link, otherwise empty string
 function renderLicenseLink(license) {
   if (license !== 'no license') {
   return `
@@ -35,13 +33,12 @@ function renderLicenseLink(license) {
   }
 }
 
-// Function that returns the license section of README
-// If there is no license, return an empty string
+// Function that returns license section of README, if none, return empty string
 function renderLicenseSection(license) {
   if (license !== 'no license') {
   return `
   ## [License](#table-of-contents)
-  The application is covered under the following license:
+  The application uses the following license:
   ${renderLicenseLink(license)}
     `;
   } else {
@@ -49,8 +46,7 @@ function renderLicenseSection(license) {
   }
  }
 
- // Function that returns license in table of contents
- // If there is no license, return an empty string
+ // Function that returns license in table of contents, otherwise empty string
 function renderLicenseTOC(license) {
   if (license !== 'no license') {
   return `
@@ -72,7 +68,7 @@ function generateMarkdown(data) {
   * [Installation](#installation)
   * [Usage](#usage)
   ${renderLicenseTOC(data.license)}
-  * [Contributing](#contributing)
+  * [Contribution](#contribution)
   * [Tests](#tests)
   * [Questions](#questions)
   
@@ -85,14 +81,10 @@ function generateMarkdown(data) {
   ## [Usage](#table-of-contents)
   ${data.usage}
   
-  For more information on how to add screenshots for examples, visit the following website:
-  
-  [Mark Down Tutorial](https://agea.github.io/tutorial.md/)
-  
   ${renderLicenseSection(data.license)}
-  ## [Contributing](#table-of-contents)
+  ## [Contribution](#table-of-contents)
   
-  ${renderContributingSection(data.confirmContributers, data.contribute)}
+  ${renderContributionSection(data.confirmContributers, data.contribute)}
   ## [Tests](#table-of-contents)
   ${data.test}
   ## [Questions](#table-of-contents)
